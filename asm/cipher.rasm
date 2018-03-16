@@ -1,0 +1,51 @@
+# Cipher 5 characters from std-in by the amount of the first character
+# If the first character is e, it should print out the next 5 characters the same
+# The first value printed is the ascii equivalent to the amount of the shift.
+
+
+    ori $v0, $zero, 0xFFFC # store output address to $v0
+    ori $v1, $zero, 0xFFF8 # store input address to $v1
+
+    lw $s0, 0($v1)
+    lw $s1, 0($v1)
+    lw $s2, 0($v1)
+    lw $s3, 0($v1)
+    lw $s4, 0($v1)
+    lw $s5, 0($v1)
+
+    addi $s0, $s0, -65 # $s0 = $s0 - 65 (A)
+
+    add $s1, $s1, $s0
+    add $s2, $s2, $s0
+    add $s3, $s3, $s0
+    add $s4, $s4, $s0
+    add $s5, $s5, $s0
+    
+    ori $t0, $zero, 0x73
+    sw  $t0, 0($v0)
+    ori $t0, $zero, 0x68
+    sw  $t0, 0($v0)
+    ori $t0, $zero, 0x69
+    sw  $t0, 0($v0)
+    ori $t0, $zero, 0x66
+    sw  $t0, 0($v0)
+    ori $t0, $zero, 0x74
+    sw  $t0, 0($v0)
+    ori $t0, $zero, 0x65
+    sw  $t0, 0($v0)
+    ori $t0, $zero, 0x64
+    sw  $t0, 0($v0)
+    ori $t0, $zero, 0x3A
+    sw  $t0, 0($v0)
+    ori $t0, $zero, 0x0A
+    sw  $t0, 0($v0)
+
+    sw $s0, 0($v0)
+    sw $s1, 0($v0)
+    sw $s2, 0($v0)
+    sw $s3, 0($v0)
+    sw $s4, 0($v0)
+    sw $s5, 0($v0)
+
+    ori $t0, $zero, 0x0A
+    sw  $t0, 0($v0)

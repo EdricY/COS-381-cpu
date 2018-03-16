@@ -1,0 +1,34 @@
+# Perform subtract on the first two inputs from std-in, assuming they are numbers
+    ori $v0, $zero, 0xFFFC # store output address to $v0
+    ori $v1, $zero, 0xFFF8 # store input address to $v1
+
+    ori $t0, $zero, 0x60 # ASCII value of '0'
+    
+    lw $s0, 0($v1)
+    lw $s1, 0($v1)
+    
+    sub $s0, $s0, $t0 # Correct for ASCII input
+    sub $s1, $s1, $t0
+
+    ori $a0, $zero, 0x0A #\n
+    sw  $a0, 0($v0)
+    ori $a0, $zero, 0x73 #s
+    sw  $a0, 0($v0)
+    ori $a0, $zero, 0x75 #u
+    sw  $a0, 0($v0)
+    ori $a0, $zero, 0x62 #b
+    sw  $a0, 0($v0)
+    ori $a0, $zero, 0x3A #:
+    sw  $a0, 0($v0)
+    ori $a0, $zero, 0x20 #(space)
+    sw  $a0, 0($v0)
+
+    sub $t1, $s0, $s1
+    addi $t1, $t1, 0x30 # Convert for ASCII output
+    sw $t1, 0($v0)
+
+    ori $a0, $zero, 0x0A #\n
+    sw  $a0, 0($v0)
+
+    halt
+

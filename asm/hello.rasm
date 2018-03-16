@@ -1,0 +1,36 @@
+# print "Hello, World!"
+    
+    ori $v0, $zero, 0xFFFC # store output address to $v0
+    
+    ori $t0, $zero, 0x48
+    ori $t1, $zero, 0x65
+    ori $t2, $zero, 0x6C
+    ori $t3, $zero, 0x6C
+    ori $t4, $zero, 0x6F
+    ori $t5, $zero, 0x2C
+    ori $t6, $zero, 0x20
+    ori $t7, $zero, 0x57
+    ori $s0, $zero, 0x6F
+    ori $s1, $zero, 0x72
+    ori $s2, $zero, 0x6C
+    ori $s3, $zero, 0x64
+    ori $s4, $zero, 0x21
+    ori $s5, $zero, 0x0A
+
+    sw $t0, 0($v0) # print $t0 to screen
+    sw $t1, 0($v0)
+    sw $t2, 0($v0)
+    sw $t3, 0($v0)
+    sw $t4, 0($v0)
+    sw $t5, 0($v0)
+    sw $t6, 0($v0)
+    sw $t7, 0($v0)
+    sw $s0, 0($v0)
+    sw $s1, 0($v0)
+    sw $s2, 0($v0)
+    sw $s3, 0($v0)
+    sw $s4, 0($v0)
+    sw $s5, 0($v0)
+
+    halt
+    sw $s4, 0($v0) # should not print another '!'

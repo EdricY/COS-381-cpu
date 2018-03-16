@@ -1,0 +1,86 @@
+# print out some statements about the first input value, assuming it is a number
+    ori $v0, $zero, 0xFFFC # store output address to $v0
+    ori $v1, $zero, 0xFFF8 # store input address to $v1
+
+    lw $s0, 0($v1)
+
+    addi $s0, $s0, -0x30
+
+    ori $a0, $zero, 0x0A #\n
+    jal Print
+    ori $a0, $zero, 0x2B #+
+    jal Print
+    ori $a0, $zero, 0x35 #5
+    jal Print
+    ori $a0, $zero, 0x3A #:
+    jal Print
+    ori $a0, $zero, 0x20 #(space)
+    jal Print
+
+    addi $a0, $s0, 5
+    addi $a0, $a0, 0x30
+    jal Print
+
+
+    ori $a0, $zero, 0x0A #\n
+    jal Print
+    ori $a0, $zero, 0x2B #+
+    jal Print
+    ori $a0, $zero, 0x35 #5
+    jal Print
+    ori $a0, $zero, 0x75 #u
+    jal Print
+    ori $a0, $zero, 0x3A #:
+    jal Print
+    ori $a0, $zero, 0x20 #(space)
+    jal Print
+
+    addiu $a0, $s0, 5
+    addi $a0, $a0, 0x30
+    jal Print
+
+
+    ori $a0, $zero, 0x0A #\n
+    jal Print
+    ori $a0, $zero, 0x3C #<
+    jal Print
+    ori $a0, $zero, 0x35 #5
+    jal Print
+    ori $a0, $zero, 0x3F #?
+    jal Print
+    ori $a0, $zero, 0x20 #(space)
+    jal Print
+
+    ori $t5, $zero, 5
+    slt $a0, $s0, $t5
+
+    beq $a0, $zero, 8
+    add $zero, $zero, $zero
+
+    ori $a0, $zero, 0x79 #y
+    jal Print
+    ori $a0, $zero, 0x65 #e
+    jal Print
+    ori $a0, $zero, 0x73 #s
+    jal Print
+
+    j End
+
+    ori $a0, $zero, 0x6E #n
+    jal Print
+    ori $a0, $zero, 0x6F #o
+    jal Print
+    j End
+
+Print:
+    sw  $a0, 0($v0)
+    jr $ra
+
+End:
+    ori $a0, $zero, 0x0A #\n
+    jal Print
+    halt
+
+    ori $a0, $zero, 0x21 #!
+    jal Print
+
